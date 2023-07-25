@@ -35,5 +35,8 @@ div:hover:after{
     background-color: blue;
 }
 
+.hideAfterElem::after{
+    display: none !important;
+}
 
 </style>
