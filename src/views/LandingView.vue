@@ -34,8 +34,10 @@
             
         </div>
         <div class="mt-12">
-            <MainButton class="!rounded-3x !py-3 flex items-center hideAfterElem"> 
-                <a href="/home">Choisir</a> </MainButton>
+            <a href="/home">
+            <MainButton class="!rounded-3x !py-3 flex items-center hideAfterElem" > 
+                Choisir </MainButton>
+            </a>
         </div>
     </div>
 </template>
@@ -57,16 +59,21 @@ export default{
         this.getAllFan();
     },
     methods:{
-    async getAllFan(){
-        await axios.get('http://d04ad23.online-server.cloud:8080/ventilator/getAllVentilatorStatus')
-        .then((response)=>{
-            this.allFan = response.data
-            console.log(this.allFan);
-        }).catch(error=>{
-            console.log(error)
-            this.allFan = []
-        })
-    },
+        async getAllFan(){
+            await axios.get('http://d04ad23.online-server.cloud:8080/ventilator/getAllVentilatorStatus')
+            .then((response)=>{
+                this.allFan = response.data
+                console.log(this.allFan);
+            }).catch(error=>{
+                console.log(error)
+                this.allFan = []
+            })
+        },
+        goTo() {
+            this.$router.push({
+                path: '/home'
+            });
+        },
     }
 }
 </script>
