@@ -1,17 +1,17 @@
 <template>
     <div>
-        <div class="flex  items-center justify-center mt-10">
+        <div class="flex  items-center justify-center mt-10 mb-8">
             <div class=" w-8">
                 <img alt="Vue logo" src="../assets/logo.png">
             </div>
             <p class="ml-2">Thermo Fan</p>
         </div>
         <p class="w-3/5 m-auto my-10 max-sm:my-3">
-            Bienvenu dans votre application de gestion <br> des ventilateurs <span class=" font-medium">Thermo Fan</span>.
+            Bienvenue dans votre application de gestion <br> des ventilateurs <span class=" font-medium">Thermo Fan</span>.
         </p>
         <!-- All Fan slider-->
         <div>
-            <div class="rounded-lg bg-[#f4f6fe] h-10 sm:h-10 py-0 mt-5 mb-0 flex items-center justify-around w-2/5 max-sm:w-4/5 m-auto shadow-[inset_0rem_0.2rem_0.4rem_0_rgb(0,0,0,0.1)]">
+            <div class="rounded-lg bg-[#f4f6fe] max-sm:mt-10 h-10 sm:h-10 py-0 mt-5 mb-0 flex items-center justify-around w-2/5 max-sm:w-4/5 m-auto shadow-[inset_0rem_0.2rem_0.4rem_0_rgb(0,0,0,0.1)]">
                 <p>n°{{ currentFan.id }}</p>
             </div>
             <div class="flex justify-center px-10 items-center m-auto">
