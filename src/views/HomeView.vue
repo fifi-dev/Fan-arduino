@@ -54,7 +54,7 @@
     <div data-webgl class="flex justify-center"></div>
     <!-- Toggles -->
     <div class="flex w-2/5 m-auto absolute centeredAbsolute max-sm:w-3/5 max-xs:w-4/5">
-      <MainButton btn="on-btn" data-power-btn class="bg-red-200">
+      <MainButton @click="toggleOn()" btn="on-btn" data-power-btn class="bg-red-200">
         <svg class="icon-power" height="1em" width="1em">
           <use xlink:href="#icon-power" />
         </svg>
@@ -66,13 +66,13 @@
         </svg>
       </MainButton>
 
-      <MainButton btn="btn" data-fan-speed-btn data-fan-speed="high">
+      <MainButton @click="toggleSpeed()" btn="btn" data-fan-speed-btn data-fan-speed="high">
         <svg class="icon-arrow" height="1em" width="1em">
           <use xlink:href="#icon-plus" />
         </svg>
       </MainButton>
 
-      <MainButton btn="btn" data-fan-speed-btn data-fan-speed="low">
+      <MainButton @click="toggleSpeed()" btn="btn" data-fan-speed-btn data-fan-speed="low">
         <svg class="icon-arrow" height="1em" width="1em">
           <use xlink:href="#icon-minus" />
         </svg>
@@ -91,7 +91,8 @@ export default {
   data(){
     return {
       fan:[],
-      isRunning: false,
+      isRunning: 0,
+      currentVelocity: 250,
     }
   },
   components: {
@@ -99,7 +100,6 @@ export default {
   },
   mounted() {
       this.getStatus();
-      this.toogleOn()
         window.addEventListener('DOMContentLoaded', () => {
         new App3();
       }, false);
@@ -166,7 +166,7 @@ export default {
           this.$fanSpeedBtn = [...document.querySelectorAll('[data-fan-speed-btn]')];
           this.$oscillationBtn = document.querySelector('[data-oscillation-btn]');
 
-          this.fanSpeed = 0.15
+          this.fanSpeed = 250
           this.rotationCount = 0
           this.isPower = false
           this.isOscillation = false
@@ -374,9 +374,9 @@ export default {
           this.$fanSpeedBtn.forEach(el => {
             el.addEventListener('click', () => {
               if (el.dataset.fanSpeed === 'high') {
-                this.fanSpeed = 0.4
+                this.fanSpeed = 100
               } else {
-                this.fanSpeed = 0.2
+                this.fanSpeed = 250
               }
             });
           });
@@ -404,10 +404,36 @@ export default {
             this.fan = []
         })
     },
-    async toogleOn(){
-        await axios.post('http://d04ad23.online-server.cloud:8080/ventilator/setMode')
+    async toggleOn(){
+        if (this.isRunning == 0){
+          this.isRunning = 1
+        }else{
+          this.isRunning = 0
+        }
+        await axios.post('http://d04ad23.online-server.cloud:8080/ventilator/setMode', {
+        "runnning": this.isRunning,
+        "velocity": this.currentVelocity
+      })
         .then((response)=>{
-            console.log("click de l'allumag" + response.data);
+            console.log(response.data)
+
+        }).catch(error=>{
+            console.log(error)
+        })
+    },
+    async toggleSpeed(){
+      if (this.currentVelocity == 250){
+          this.currentVelocity = 100
+        }else{
+          this.currentVelocity = 250
+        }
+        await axios.post('http://d04ad23.online-server.cloud:8080/ventilator/setSpeed', {
+        "runnning": 1,
+        "velocity": this.currentVelocity
+        })
+        .then((response)=>{
+            console.log(response.data)
+            console.log("vitesse modifié" + this.currentVelocity)
         }).catch(error=>{
             console.log(error)
         })
