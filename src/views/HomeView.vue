@@ -126,8 +126,8 @@ export default {
         static get RENDERER_PARAM() {
           return {
             clearColor: 0xecf2fa,
-            width: 1000,
-            height: 476.64,
+            width: window.innerWidth / 1.6,
+            height: window.innerHeight / 1.6,
           };
         }
 
