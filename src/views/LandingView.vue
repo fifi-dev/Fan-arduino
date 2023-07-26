@@ -16,7 +16,7 @@
             </div>
             <div class="flex justify-center px-10 items-center m-auto">
                 <div>
-                    <MainButton @click="prev()">
+                    <MainButton btn="btn" @click="prev()">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"  viewBox="0 0 256 512"><path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"/></svg>
                     </MainButton>
                 </div>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div>
-                    <MainButton @click="next()">
+                    <MainButton btn="btn" @click="next()">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"  viewBox="0 0 256 512"><path d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>
                     </MainButton>
                 </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="mt-12">
             <a href="/home">
-            <MainButton class="!rounded-3x !py-3 flex items-center hideAfterElem" > 
+            <MainButton btn="btn" class="!rounded-3x !py-3 flex items-center hideAfterElem" >
                 Selectionner </MainButton>
             </a>
         </div>
