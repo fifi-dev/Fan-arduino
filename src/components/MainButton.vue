@@ -15,11 +15,10 @@ export default {
             btnId: this.btn,
         }
     },
-
     methods: {
         onClick(event) {
             if(event.currentTarget.id == 'on-btn'){
-                console.log('coucou')
+                //console.log('coucou')
                 if(this.isActive){
                     this.isActive = false
                     event.srcElement.classList.add('declick')
@@ -30,7 +29,7 @@ export default {
                     this.isActive = true
                 }
                 console.log(event)
-                    console.log(this.isActive)
+                   // console.log(this.isActive)
             }
         }
     },

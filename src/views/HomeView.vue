@@ -91,6 +91,7 @@ export default {
   data(){
     return {
       fan:[],
+      isRunning: false,
     }
   },
   components: {
@@ -98,6 +99,7 @@ export default {
   },
   mounted() {
       this.getStatus();
+      this.toogleOn()
         window.addEventListener('DOMContentLoaded', () => {
         new App3();
       }, false);
@@ -364,6 +366,7 @@ export default {
               this.isPower = true
               this.isOscillation = true
             }
+            this.isRunning = this.isPower
           });
         }
 
@@ -401,6 +404,14 @@ export default {
             this.fan = []
         })
     },
+    async toogleOn(){
+        await axios.post('http://d04ad23.online-server.cloud:8080/ventilator/setMode')
+        .then((response)=>{
+            console.log("click de l'allumag" + response.data);
+        }).catch(error=>{
+            console.log(error)
+        })
+    },
   }
 }
 </script>
@@ -408,5 +419,5 @@ export default {
   left: 50%;
   -ms-transform: translate(-50%);
   transform: translateX(-50%);
-  bottom: 10%;
+  bottom: 5%;
 }</style>
